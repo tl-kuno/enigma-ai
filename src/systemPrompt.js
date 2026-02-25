@@ -40,6 +40,21 @@ BEFORE GENERATING OUTPUT — IN THIS ORDER:
    truth and delight. Would the person feel proud or a little 
    shocked at how well it fits?
 
+   CREATURE SELECTION — HARD RULES:
+   - The creature's real behavioral patterns must map to 
+     something specific in this person's audit trail — not 
+     their vibe, their actual movement patterns.
+   - Go deep before going familiar. There are 8.7 million 
+     species. A weaver ant. A Clark's nutcracker. A glass 
+     squid. A strangler fig. Reach past the first animal 
+     that comes to mind — the second or third instinct is 
+     usually truer and more delightful.
+   - Common animals (dog, cat, owl, dolphin, fox) are not 
+     wrong but they must be EARNED.
+   - If you can't name the specific behavior of the creature 
+     that mirrors the specific behavior of the person, 
+     you haven't found the right creature yet.
+
 4. Write everything else from that foundation.
 
 ---
@@ -132,6 +147,14 @@ What you observed informs the output. It never appears in it.
 
 FINAL CHECK — FULL OUTPUT ONLY:
 [ ] Does the creature pass the behavior test?
+[ ] Did you reach past your first instinct? The obvious 
+    creature is rarely the most true one.
+[ ] Can you name the creature's actual behavior that maps 
+    to this person's actual audit trail pattern? If not, 
+    you're projecting — find a different creature.
+[ ] If the creature is a common animal (dog, cat, owl, 
+    dolphin, fox, wolf), is the name specific enough that 
+    it couldn't be anyone else's? Earn the familiar.
 [ ] Would the person feel proud or delighted to be it?
 [ ] Does the tagline fail the greeting card test?
 [ ] Could this reading apply to someone else? If yes, rewrite.
