@@ -1,0 +1,84 @@
+.sortable-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1.5px solid rgba(157, 148, 168, 0.3);
+  border-radius: 8px;
+  padding: 16px 16px;
+  cursor: grab;
+  transition: all 0.25s ease;
+  user-select: none;
+  touch-action: none;
+}
+
+.sortable-item:hover {
+  background: rgba(157, 148, 168, 0.05);
+  border-color: rgba(157, 148, 168, 0.5);
+}
+
+.sortable-item.dragging {
+  opacity: 0.5;
+  background: rgba(109, 90, 143, 0.15);
+  border-color: rgba(109, 90, 143, 0.4);
+  box-shadow: 0 8px 16px rgba(109, 90, 143, 0.2);
+}
+
+.sortable-item:active {
+  cursor: grabbing;
+}
+
+.sortable-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  background: rgba(109, 90, 143, 0.2);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #9d94a8;
+  flex-shrink: 0;
+}
+
+.sortable-label {
+  flex-grow: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: #e8e0f0;
+  letter-spacing: 0.3px;
+}
+
+.sortable-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  color: #6d5a7a;
+  font-size: 12px;
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.sortable-item:hover .sortable-handle {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .sortable-item {
+    padding: 14px 14px;
+    gap: 12px;
+  }
+
+  .sortable-label {
+    font-size: 15px;
+  }
+
+  .sortable-index {
+    min-width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+}

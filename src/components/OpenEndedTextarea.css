@@ -1,0 +1,108 @@
+.open-ended-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(157, 148, 168, 0.2);
+  border-radius: 12px;
+  padding: 32px 24px;
+  width: 100%;
+}
+
+.oe-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.oe-question {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #e8e0f0;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.oe-textarea {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1.5px solid rgba(157, 148, 168, 0.3);
+  border-radius: 8px;
+  padding: 16px 16px;
+  color: #e8e0f0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.25s ease;
+}
+
+.oe-textarea::placeholder {
+  color: #6d5a7a;
+}
+
+.oe-textarea:hover {
+  border-color: rgba(157, 148, 168, 0.5);
+  background: rgba(157, 148, 168, 0.03);
+}
+
+.oe-textarea:focus {
+  outline: none;
+  border-color: rgba(109, 90, 143, 0.6);
+  background: rgba(109, 90, 143, 0.05);
+  box-shadow: 0 0 0 3px rgba(109, 90, 143, 0.1);
+}
+
+.oe-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.oe-button {
+  background: linear-gradient(135deg, #6d5a8f 0%, #5a4a7d 100%);
+  color: #e8e0f0;
+  border: none;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.oe-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(109, 90, 143, 0.3);
+}
+
+.oe-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(109, 90, 143, 0.2);
+}
+
+@media (max-width: 480px) {
+  .open-ended-card {
+    padding: 24px 16px;
+    gap: 20px;
+  }
+
+  .oe-question {
+    font-size: 18px;
+  }
+
+  .oe-textarea {
+    min-height: 100px;
+    font-size: 14px;
+  }
+
+  .oe-button {
+    width: 100%;
+  }
+}
