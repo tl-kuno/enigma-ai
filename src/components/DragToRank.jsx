@@ -16,7 +16,7 @@ import {
 import { SortableItem } from './SortableItem';
 import './DragToRank.css';
 
-const QUESTION_TEXT = 'Put these in order of how true they are for you — most to least:';
+const QUESTION_TEXT = 'Put these in order of how your mind works naturally...';
 const DEFAULT_ITEMS = ['Feel', 'Think', 'Make', 'Move'];
 
 export function DragToRank({ logger, onAnswer }) {

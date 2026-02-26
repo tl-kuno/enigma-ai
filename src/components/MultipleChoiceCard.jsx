@@ -16,7 +16,7 @@ const questions = {
     options: [
       'Improvise immediately, probably better this way',
       'Google a substitution',
-      'Feel defeated, switch to ordering takeout',
+      'Switch to ordering takeout',
       'Run to the store quick',
     ],
   },

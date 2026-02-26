@@ -33,8 +33,9 @@ export function QuizFlow({ onSubmit }) {
   }, []);
 
   const handleQ1Continue = useCallback(() => {
+    logger.logEvent('question_continue', 'q1');
     setState('q2');
-  }, []);
+  }, [logger]);
 
   const handleQ2Answer = useCallback((answer) => {
     setAnswers((prev) => ({
@@ -50,22 +51,23 @@ export function QuizFlow({ onSubmit }) {
   }, []);
 
   const handleQ2Continue = useCallback(() => {
+    logger.logEvent('question_continue', 'q2');
     setState('q3');
-  }, []);
+  }, [logger]);
 
   const handleQ3Answer = useCallback((order) => {
     setAnswers((prev) => ({
       ...prev,
       dragRankResult: {
-        question: 'Put these in order of how true they are for you — most to least:',
+        question: 'Put these in order of how your mind works naturally...',
         order,
       },
     }));
   }, []);
 
   const handleQ3Continue = useCallback(() => {
-    logger.logEvent('drag_complete', {
-      question: 'Put these in order of how true they are for you \u2014 most to least:',
+    logger.logEvent('question_continue', {
+      question_id: 'q3',
       order: answers.dragRankResult.order || ['Feel', 'Think', 'Make', 'Move'],
     });
     setState('q4');
@@ -85,8 +87,9 @@ export function QuizFlow({ onSubmit }) {
   }, []);
 
   const handleQ4Continue = useCallback(() => {
+    logger.logEvent('question_continue', 'q4');
     setState('q5');
-  }, []);
+  }, [logger]);
 
   const handleQ5Answer = useCallback((text) => {
     setAnswers((prev) => ({
@@ -112,6 +115,7 @@ export function QuizFlow({ onSubmit }) {
         },
       },
     };
+    logger.logEvent('question_continue', 'q5');
     logger.logEvent('submit');
     const auditTrail = logger.getTrail();
     onSubmit(auditTrail, finalAnswers);
