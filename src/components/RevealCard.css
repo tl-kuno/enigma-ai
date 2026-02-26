@@ -117,3 +117,43 @@
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+@media (max-width: 768px) {
+  .reveal-card {
+    padding: 1.5rem 1rem;
+    justify-content: flex-start;
+  }
+
+  .reveal-columns {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .reveal-left {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .creature-name {
+    font-size: 1.75rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+  }
+
+  .creature-image {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .reading {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .ai-partnership-style {
+    font-size: 0.9rem;
+  }
+}
+
