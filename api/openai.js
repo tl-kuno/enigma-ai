@@ -1,8 +1,15 @@
+import { openaiLimiter, getIp, rateLimitResponse } from "./_ratelimit.js";
+
 export const config = { runtime: 'edge' };
 
 export default async function handler(req) {
   if (req.method !== 'POST') {
     return new Response('Method not allowed', { status: 405 });
+  }
+
+  if (openaiLimiter) {
+    const { success } = await openaiLimiter.limit(getIp(req));
+    if (!success) return rateLimitResponse();
   }
 
   try {
