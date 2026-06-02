@@ -15,6 +15,17 @@ function extractJSON(text) {
   }
 }
 
+function extractGeneratedImageSource(data) {
+  const image = data?.data?.[0];
+  const format = data?.output_format || 'png';
+
+  if (image?.b64_json) {
+    return `data:image/${format};base64,${image.b64_json}`;
+  }
+
+  throw new Error('OpenAI image response did not include data[0].b64_json');
+}
+
 /**
  * Call Anthropic Claude API with streaming.
  * Fires onImagePrompt callback as soon as image_prompt is detected in stream,
@@ -134,10 +145,10 @@ export async function generateImage(imagePrompt) {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        model: 'dall-e-3',
+        model: 'gpt-image-2',
         prompt: imagePrompt,
         size: '1024x1024',
-        quality: 'standard',
+        quality: 'low',
         n: 1,
       }),
     });
@@ -150,9 +161,9 @@ export async function generateImage(imagePrompt) {
     }
 
     const data = await response.json();
-    return data.data[0].url;
+    return extractGeneratedImageSource(data);
   } catch (error) {
-    console.error('Error calling OpenAI DALL-E API:', error);
+    console.error('Error calling OpenAI GPT-Image API:', error);
     throw error;
   }
 }
