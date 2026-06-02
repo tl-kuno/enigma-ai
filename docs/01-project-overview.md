@@ -14,7 +14,7 @@ Enigma is a 5-question personality experience that listens to both what people s
 
 - **Frontend:** React (Vite), mobile-first, single-page
 - **AI Inference:** Anthropic Claude (claude-opus-4-20250514) via API
-- **Image Generation:** OpenAI DALL-E 3
+- **Image Generation:** OpenAI GPT Image 2
 - **Deployment:** Local for hackathon demo, Vercel-ready
 
 ---
@@ -40,7 +40,7 @@ Loading State (rotating messages)
     ↓ [Anthropic API call]
     ↓ [check: follow_up or full output]
     ↓ [if follow_up: show question, collect answer, second API call]
-    ↓ [OpenAI DALL-E 3 image generation]
+    ↓ [OpenAI GPT Image 2 image generation]
 Reveal Card
 ```
 
@@ -170,7 +170,7 @@ When this is returned: display the question to the user, collect their answer, m
   "tagline": "One sentence naming their gift directly.",
   "reading": "2 sentences. Creature language only.",
   "ai_partnership_style": "Three sentences. Creature behavior as bridge.",
-  "image_prompt": "Painterly scene description for DALL-E 3."
+  "image_prompt": "Painterly scene description for GPT Image 2."
 }
 ```
 
@@ -204,7 +204,7 @@ Rotate through in sequence during API call:
 
 ### Agent 2 — API Integration
 **Files:** `enigmaApi.js`
-**Owns:** Anthropic API call, response parsing, follow-up logic, DALL-E image call
+**Owns:** Anthropic API call, response parsing, follow-up logic, GPT Image 2 image call
 **No dependencies:** Can build and test with mock payloads
 
 ### Agent 3 — Reveal Card UI

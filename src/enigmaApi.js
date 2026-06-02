@@ -134,10 +134,11 @@ export async function generateImage(imagePrompt) {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        model: 'dall-e-3',
+        model: 'gpt-image-2',
         prompt: imagePrompt,
         size: '1024x1024',
-        quality: 'standard',
+        output_format: 'jpeg',
+        quality: 'low',
         n: 1,
       }),
     });
@@ -150,7 +151,8 @@ export async function generateImage(imagePrompt) {
     }
 
     const data = await response.json();
-    return data.data[0].url;
+    const b64 = data.data[0].b64_json;
+    return `data:image/jpeg;base64,${b64}`;
   } catch (error) {
     console.error('Error calling OpenAI DALL-E API:', error);
     throw error;
