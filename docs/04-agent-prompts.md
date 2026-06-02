@@ -88,7 +88,7 @@ Paste this to start:
 
 ---
 
-You are building the API integration layer for a web app called Enigma. This is a React (Vite) project. Your job is to build the functions that call the Anthropic Claude API and the OpenAI DALL-E 3 API.
+You are building the API integration layer for a web app called Enigma. This is a React (Vite) project. Your job is to build the functions that call the Anthropic Claude API and the OpenAI GPT Image 2 API.
 
 **What to build:**
 
@@ -116,10 +116,10 @@ The response will be either:
 
 **2. `generateImage(imagePrompt)`**
 
-Calls OpenAI DALL-E 3.
+Calls OpenAI GPT Image 2.
 
 - Endpoint: `https://api.openai.com/v1/images/generations`
-- Model: `dall-e-3`
+- Model: `gpt-image-2`
 - Size: `1024x1024`
 - Quality: `standard`
 - API key from: `import.meta.env.VITE_OPENAI_API_KEY`
@@ -173,7 +173,7 @@ A full-screen loading experience shown while the API call runs.
 
 A full-screen reveal card. Props:
 - `enigma` — the full output object from Claude
-- `imageUrl` — the DALL-E generated image URL
+- `imageUrl` — the GPT Image 2 generated image URL
 
 **Card should display:**
 - `enigma.creature_name` — large, prominent, feels like a title
