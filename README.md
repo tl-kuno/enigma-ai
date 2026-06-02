@@ -13,7 +13,7 @@ Most personality tools ask what you think about yourself. Enigma listens to what
 1. **Five whimsical questions** capture orientation, structure, self-concept, perception, and inner energy
 2. **Audit trail** logs every keystroke, drag, hover, and timing signal as you answer
 3. **Claude Sonnet** receives the full behavioral stream and generates one creature-based reading
-4. **DALL-E 3** renders the creature in a painterly scene
+4. **GPT Image 2** renders the creature in a painterly scene
 5. **Reveal card** shows creature name, tagline, reading, and AI partnership style
 
 The whole experience happens in ~8-15 seconds, with image generation parallelized while Claude writes.
@@ -22,7 +22,7 @@ The whole experience happens in ~8-15 seconds, with image generation parallelize
 
 - **Frontend:** React 19 + Vite
 - **AI Inference:** Claude Sonnet (or Opus) via Anthropic API
-- **Image Generation:** DALL-E 3 via OpenAI API
+- **Image Generation:** GPT Image 2 via OpenAI API
 - **Deployment:** Vercel (Edge Functions for API proxying)
 - **Drag-to-rank:** @dnd-kit
 
@@ -100,9 +100,9 @@ Every interaction is timestamped and logged:
 - `backspace_hold` — self-censoring and deleted thoughts
 - `paste` / `cut` / `select_all` — editing patterns
 
-### Streaming + Parallel DALL-E
+### Streaming + Parallel GPT Image 2
 
-Claude's response streams via SSE. The moment `image_prompt` is detected mid-stream, DALL-E fires immediately. By the time Claude finishes the reading, the image is almost always ready.
+Claude's response streams via SSE. The moment `image_prompt` is detected mid-stream, GPT Image 2 fires immediately. By the time Claude finishes the reading, the image is almost always ready.
 
 ### Follow-up Questions
 
@@ -177,7 +177,7 @@ See `docs/03-questions.md` for full definitions and answer options.
 ## Performance
 
 - **Claude Sonnet:** ~5-8 seconds
-- **DALL-E 3:** ~10-15 seconds
+- **GPT Image 2:** ~10-15 seconds
 - **Parallel execution:** Image loads while Claude finishes → ~12-20 seconds total
 
 On slower networks, the rotating loading messages buy time without feeling like a wait.

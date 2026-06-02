@@ -26,10 +26,24 @@ function extractGeneratedImageSource(data) {
   throw new Error('OpenAI image response did not include data[0].b64_json');
 }
 
+async function parseJSONResponse(response) {
+  const rawText = await response.text();
+
+  if (!rawText) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(rawText);
+  } catch {
+    return rawText;
+  }
+}
+
 /**
  * Call Anthropic Claude API with streaming.
  * Fires onImagePrompt callback as soon as image_prompt is detected in stream,
- * allowing parallel DALL-E generation while Claude finishes.
+ * allowing parallel GPT Image 2 generation while Claude finishes.
  * @param {Object} payload - Full quiz data including answers and audit trail
  * @param {Function} onImagePrompt - Called with image_prompt string as soon as detected
  * @returns {Promise<Object>} - Either { follow_up } or full enigma object
@@ -126,8 +140,8 @@ export async function getEnigma(payload, onImagePrompt) {
 }
 
 /**
- * Generate an image using OpenAI DALL-E 3
- * @param {string} imagePrompt - The prompt for DALL-E
+ * Generate an image using OpenAI GPT Image 2
+ * @param {string} imagePrompt - The prompt for GPT Image 2
  * @returns {Promise<string>} - The URL of the generated image
  */
 export async function generateImage(imagePrompt) {
@@ -145,8 +159,9 @@ export async function generateImage(imagePrompt) {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        model: 'gpt-image-2',
+        model: 'gpt-image-1-mini',
         prompt: imagePrompt,
+        output_format: 'jpeg',
         size: '1024x1024',
         quality: 'low',
         n: 1,
@@ -154,16 +169,26 @@ export async function generateImage(imagePrompt) {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
+      const errorData = await parseJSONResponse(response);
+      const errorMessage =
+        typeof errorData === 'string'
+          ? errorData.slice(0, 200)
+          : errorData?.error?.message || 'Unknown error';
+
       throw new Error(
-        `OpenAI API error: ${response.status} - ${errorData.error?.message || 'Unknown error'}`
+        `OpenAI API error: ${response.status} - ${errorMessage}`
       );
     }
 
-    const data = await response.json();
+    const data = await parseJSONResponse(response);
+
+    if (typeof data === 'string' || !data) {
+      throw new Error('OpenAI image response was not valid JSON');
+    }
+
     return extractGeneratedImageSource(data);
   } catch (error) {
-    console.error('Error calling OpenAI GPT-Image API:', error);
+    console.error('Error calling OpenAI GPT Image 2 API:', error);
     throw error;
   }
 }
