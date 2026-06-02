@@ -30,10 +30,10 @@ function App() {
       
       setOriginalPayload(payload);
       
-      // Fire DALL-E in parallel as soon as image_prompt streams in
+      // Fire GPT Image 2 in parallel as soon as image_prompt streams in
       let imagePromise = null;
       const onImagePrompt = (prompt) => {
-        console.log('Image prompt detected in stream, firing DALL-E:', prompt);
+        console.log('Image prompt detected in stream, firing GPT Image 2:', prompt);
         imagePromise = generateImage(prompt).catch((err) => {
           console.warn('Image generation failed:', err);
           return null;
@@ -57,6 +57,7 @@ function App() {
         } else {
           // Fallback: image_prompt wasn't detected mid-stream, fire now
           try {
+            if (!response.image_prompt) throw new Error('No image_prompt in response');
             const url = await generateImage(response.image_prompt);
             setImageUrl(url);
           } catch (imageError) {
@@ -79,10 +80,10 @@ function App() {
       setError(null);
       setAppState('loading');
       
-      // Fire DALL-E in parallel as soon as image_prompt streams in
+      // Fire GPT Image 2 in parallel as soon as image_prompt streams in
       let imagePromise = null;
       const onImagePrompt = (prompt) => {
-        console.log('Image prompt detected in follow-up stream, firing DALL-E:', prompt);
+        console.log('Image prompt detected in follow-up stream, firing GPT Image 2:', prompt);
         imagePromise = generateImage(prompt).catch((err) => {
           console.warn('Image generation failed:', err);
           return null;
@@ -104,6 +105,7 @@ function App() {
         setImageUrl(url);
       } else {
         try {
+          if (!response.image_prompt) throw new Error('No image_prompt in response');
           const url = await generateImage(response.image_prompt);
           setImageUrl(url);
         } catch (imageError) {

@@ -18,7 +18,7 @@ function extractJSON(text) {
 /**
  * Call Anthropic Claude API with streaming.
  * Fires onImagePrompt callback as soon as image_prompt is detected in stream,
- * allowing parallel DALL-E generation while Claude finishes.
+ * allowing parallel GPT Image 2 generation while Claude finishes.
  * @param {Object} payload - Full quiz data including answers and audit trail
  * @param {Function} onImagePrompt - Called with image_prompt string as soon as detected
  * @returns {Promise<Object>} - Either { follow_up } or full enigma object
@@ -115,11 +115,15 @@ export async function getEnigma(payload, onImagePrompt) {
 }
 
 /**
- * Generate an image using OpenAI DALL-E 3
- * @param {string} imagePrompt - The prompt for DALL-E
+ * Generate an image using OpenAI GPT Image 2
+ * @param {string} imagePrompt - The prompt for GPT Image 2
  * @returns {Promise<string>} - The URL of the generated image
  */
-export async function generateImage(imagePrompt) {
+export async function generateImage(imagePrompt, { retries = 1 } = {}) {
+  if (!imagePrompt || typeof imagePrompt !== 'string' || !imagePrompt.trim()) {
+    throw new Error('generateImage called without a valid prompt');
+  }
+
   try {
     const isDev = import.meta.env.DEV;
     const openaiUrl = isDev ? '/api/openai/v1/images/generations' : '/api/openai';
@@ -154,7 +158,11 @@ export async function generateImage(imagePrompt) {
     const b64 = data.data[0].b64_json;
     return `data:image/jpeg;base64,${b64}`;
   } catch (error) {
-    console.error('Error calling OpenAI DALL-E API:', error);
+    if (retries > 0) {
+      console.warn(`Image generation failed, retrying (${retries} left):`, error.message);
+      return generateImage(imagePrompt, { retries: retries - 1 });
+    }
+    console.error('Error calling OpenAI GPT Image 2 API:', error);
     throw error;
   }
 }
